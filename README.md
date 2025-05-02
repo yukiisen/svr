@@ -1,9 +1,9 @@
 # svr
 
-**`svr`** is a tiny, static HTTP server written in Rust. No dependencies, Everything is built from scratch..
+**`svr`** is a tiny, static HTTP server written in Rust. No dependencies, Everything is built from scratch.. (So it sucks of course!)
 ## Features
 
-- Minimal and fast?
+- Minimal..
 - Low memory usage (Almost 3MB on VoidLinux)
 - Serves static files from any directory
 - Custom host and port
@@ -48,6 +48,8 @@ svr --host 0.0.0.0 /
 ## Benchmark
 This was tested on the introduction page of the svelte Documentation.
 
+And yes, horrible Latency!
+
 ```sh
 ⋊> ~ autocannon 127.0.0.1:3000/svelte.html                                          21:15:46
 Running 10s test @ http://127.0.0.1:3000/svelte.html
@@ -80,6 +82,7 @@ This server does not sandbox or restrict access — be careful when exposing it 
 
 ## TODO
 
+* [ ] HTTP keepalive implementation
 * [ ] Directory listing toggle
 * [ ] Basic access logging
 * [ ] Graceful shutdown
