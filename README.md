@@ -55,7 +55,3 @@ This server does not sandbox or restrict access — be careful when exposing it 
 * [ ] Basic access logging
 * [ ] Graceful shutdown
 * [ ] SPA Support
-
-## License
-
-MIT
