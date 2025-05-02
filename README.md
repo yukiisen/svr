@@ -49,7 +49,7 @@ svr --host 0.0.0.0 /
 This was tested on the introduction page of the svelte Documentation.
 
 ```sh
-⋊> ~ autocannon 127.0.0.1:3000/svelte.html                                                                                                                              21:15:46
+⋊> ~ autocannon 127.0.0.1:3000/svelte.html                                          21:15:46
 Running 10s test @ http://127.0.0.1:3000/svelte.html
 10 connections
 
