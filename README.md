@@ -4,7 +4,7 @@
 ## Features
 
 - Minimal..
-- Low memory usage (Almost 3MB on VoidLinux)
+- Low memory usage (Almost 2.2MB on VoidLinux)
 - Serves static files from any directory
 - Custom host and port
 
