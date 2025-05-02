@@ -21,7 +21,7 @@ make install clean
 ## Usage
 
 ```bash
-svr [--port <port>] [--host <host>] [path]
+svr [--port <port>] [--host <host>] [--workers <workers>] [path]
 ```
 
 ### Options
@@ -31,6 +31,7 @@ svr [--port <port>] [--host <host>] [path]
 | `--port` | Port to listen on  | `3000`      |
 | `--host` | Host to bind to    | `127.0.0.1` |
 | `path`   | Directory to serve | Current dir |
+| `workers`   | How many threads to spawn | `1` |
 
 ### Examples
 
@@ -41,8 +42,8 @@ svr
 # Serve ./public at port 8080
 svr --port 8080 ./public
 
-# Serve from root and listen on all interfaces
-svr --host 0.0.0.0 /
+# Serve current directory on 127.0.0.1:3000 and use 4 workers.
+svr --workers 4
 ```
 
 ## Benchmark

@@ -43,7 +43,7 @@ impl Config {
         let mut port = 3000;
         let mut host = "127.0.0.1".to_string();
         let mut path = PathBuf::from(".");
-        let mut workers = 2;
+        let mut workers = 1;
 
         while let Some(arg) = argv.next() {
             if arg.starts_with("--") {
