@@ -19,8 +19,10 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     server.middleware("*", serve_static(path));
     server.last("*", Box::new(not_found));
-    
+
+    #[cfg(debug_assertions)]
     dbg!("{}", config.path);
+
     println!("Server listening on {addr}");
 
     server.listen(addr)?;

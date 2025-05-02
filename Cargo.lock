@@ -5,6 +5,7 @@ version = 4
 [[package]]
 name = "stress"
 version = "0.1.0"
+source = "git+https://github.com/yukiisen/stress.git#73f360a827136fe3a41a3aef310bb9d109744315"
 
 [[package]]
 name = "svr"

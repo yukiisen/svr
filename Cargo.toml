@@ -4,4 +4,4 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-stress = { path = "../stress/" }
+stress = { git = "https://github.com/yukiisen/stress.git" }
