@@ -15,13 +15,6 @@ Build from source:
 ```bash
 git clone https://github.com/yourusername/svr
 cd svr
-cargo build --release
-./target/release/svr [options]
-````
-
-Or use make it to your path:
-
-```bash
 make install clean
 ```
 
