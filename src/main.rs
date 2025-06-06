@@ -11,11 +11,13 @@ use std::path::PathBuf;
 
 fn main() -> Result<(), Box<dyn Error>> {
     let config = Config::from_args()?;
-
     let path = Box::leak(config.path.to_string_lossy().into());
     let addr = Box::leak(format!("{}:{}", config.host, config.port).into_boxed_str());
-
     let mut server = HTTPServer::new(config.workers.into());
+
+    if config.cors {
+        server.middleware("*", Box::new(cors));
+    }
 
     server.middleware("*", serve_static(path));
     server.last("*", Box::new(not_found));
@@ -35,6 +37,7 @@ struct Config {
     port: u16,
     host: String,
     workers: u8,
+    cors: bool
 }
 
 impl Config {
@@ -43,6 +46,7 @@ impl Config {
         let mut port = 3000;
         let mut host = "127.0.0.1".to_string();
         let mut path = PathBuf::from(".");
+        let mut cors = false;
         let mut workers = 1;
 
         while let Some(arg) = argv.next() {
@@ -63,6 +67,9 @@ impl Config {
                             workers = w.parse()?;
                         }
                     }
+                    "cors" => {
+                        cors = true;
+                    }
                     _ => {}
                 }
             } else {
@@ -70,7 +77,7 @@ impl Config {
             }
         };
 
-        Ok(Config { path, port, host, workers })
+        Ok(Config { path, port, host, workers, cors })
     }
 }
 
@@ -78,4 +85,25 @@ fn not_found(_req: &mut Request, res: &mut Response) -> RouteResult {
     res.set_status(404)?;
     res.send_file("./not-found.html")?;
     Ok(true)
+}
+
+fn cors (req: &mut Request, res: &mut Response) -> RouteResult {
+    let origin = req.get_header("origin").map(|e| e.as_str()).unwrap_or("*");
+    
+    // these shouldn't fail since this is a top level middleware
+    res.set_header("Access-Control-Allow-Origin", origin).unwrap();
+    res.set_header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS").unwrap();
+    res.set_header("Access-Control-Allow-Headers", "Content-Type, Authorization").unwrap();
+    res.set_header("Access-Control-Allow-Credentials", "true").unwrap();
+
+    // return early for OPTIONS requests
+    if req.method == "OPTIONS" {
+        res.set_status(204).unwrap();
+        res.send("").unwrap();
+        
+        return Ok(true);
+    }
+
+    // to the next handler
+    Ok(false)
 }

@@ -13,7 +13,7 @@
 Build from source:
 
 ```bash
-git clone https://github.com/yourusername/svr
+git clone https://github.com/yukiisen/svr
 cd svr
 make install clean
 ```
@@ -21,7 +21,7 @@ make install clean
 ## Usage
 
 ```bash
-svr [--port <port>] [--host <host>] [--workers <workers>] [path]
+svr [--port <port>] [--host <host>] [--workers <workers>] [--cors] [path]
 ```
 
 ### Options
@@ -30,8 +30,9 @@ svr [--port <port>] [--host <host>] [--workers <workers>] [path]
 | -------- | ------------------ | ----------- |
 | `--port` | Port to listen on  | `3000`      |
 | `--host` | Host to bind to    | `127.0.0.1` |
+| `--workers`   | How many threads to spawn | `1` |
+| `--cors`   | Enable Cors | |
 | `path`   | Directory to serve | Current dir |
-| `workers`   | How many threads to spawn | `1` |
 
 ### Examples
 
